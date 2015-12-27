@@ -1,44 +1,33 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
+
+#define LIMIT 1000000
 
 int main()
 {
-	int n = 2;
-	int count;
-	while(1){
-		int i = 1;
-		int check = 0;
-		printf("%f",round(sqrt(n)));
-		break;
-		while(i<round(sqrt(n)))
-		{
-			printf("here");
+	unsigned long long int i,j;
+	int *primes;
+	int z = 1;
+
+	primes = malloc(sizeof(int)*LIMIT);
+
+	for (i=2;i<LIMIT;i++){
+		primes[i] = 1;
+	}
+
+	for (i=2;i<LIMIT;i++){
+		if (primes[i]){
+			for (j=i;i*j<LIMIT;j++){
+				primes[i*j]=0;
+			}
 		}
 	}
-	// while(1)
-	// {
-		// int i = 1;
-		// int check = 0;
-		// while(i<round(sqrt(n)))
-		// {
-		// 	if ( n%i==0 )
-		// 	{
-		// 		check++;
-		// 	}
-		// }
-		// if(check==2)
-		// {
-		// 	count++;
-		// }
-		// if(count==1)
-		// {
-		// 	printf("%d",n);
-		// }
-		// n++;
-		// if(n==10)
-		// {
-		// 	break;
-		// }
-	// }
-	return 0;
+	for (i=2;i<LIMIT;i++){
+		if (primes[i]){
+			if (z==10001){
+				printf("%dth prime = %d\n",z,i);
+			}
+			z++;
+		}
+	}
 }
