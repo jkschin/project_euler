@@ -32,10 +32,11 @@ Example:
 	n = 1000, returns [2,2,2,5,5,5]
 	n = 10, returns [2,5]
 '''
+@jit
 def prime_decomposition(n,sieve):
 	array = []
 	for i in sieve:
-		while(1):
+		while True:
 			if n%i==0:
 				n/=i
 				array.append(i)
@@ -44,4 +45,11 @@ def prime_decomposition(n,sieve):
 		if n==1:
 			break
 	return array
+
+@jit
+def multiply_list(l):
+	out = 1
+	for element in l:
+		out *= element
+	return out
 
