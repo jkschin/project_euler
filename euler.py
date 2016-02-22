@@ -1,5 +1,9 @@
 import math
 from numba import jit
+'''
+64 bit prime: 18446744073709551557
+'''
+
 
 '''
 Inputs:
@@ -44,4 +48,31 @@ def prime_decomposition(n,sieve):
 		if n==1:
 			break
 	return array
+
+'''
+Inputs:
+	n: An integer for prime decomposition.
+Outputs:
+	array: An array of prime factors, with repeats.
+Example:
+	n = 1000, returns [2,2,2,5,5,5]
+	n = 10, returns [2,5]
+'''
+def modular_pow(base, exponent, modulus):
+	if (modulus-1)**2 > (2**64-1): raise Exception( "Invalid Modulus. Use a smaller one." )
+	if modulus == 1:
+		return 0
+	result = 1
+	base = base % modulus
+	while exponent > 0:
+		if (exponent%2)==1:
+			result = (result * base) %  modulus
+			quotient = (result * base) // modulus
+			print quotient
+		exponent = exponent >> 1
+		base = (base**2) % modulus
+	return result
+
+
+
 
