@@ -15,7 +15,7 @@ Example:
 	n = 11, returns [2,3,5,7,11]
 '''
 @jit
-def sieve_of_erasthothenes(n):
+def sieve_of_eratosthenes(n):
 	array = [0]+[0]+[1]*(n-1)
 	out = []
 	for i in range(2,int(math.ceil(math.sqrt(n)))):
@@ -51,12 +51,8 @@ def prime_decomposition(n,sieve):
 	return array
 '''
 Inputs:
-	n: An integer for prime decomposition.
 Outputs:
-	array: An array of prime factors, with repeats.
 Example:
-	n = 1000, returns [2,2,2,5,5,5]
-	n = 10, returns [2,5]
 '''
 def modular_pow(base, exponent, modulus):
 	if (modulus-1)**2 > (2**64-1): raise Exception( "Invalid Modulus. Use a smaller one." )
@@ -73,6 +69,14 @@ def modular_pow(base, exponent, modulus):
 		base = (base**2) % modulus
 	return result
 
+'''
+Inputs:
+	l: A list of numbers.
+Outputs:
+	out: All numbers in the list multiplied together.
+Example:
+	l = [2,3,4,5,6], returns 720
+'''
 @jit
 def multiply_list(l):
 	out = 1
@@ -80,3 +84,35 @@ def multiply_list(l):
 		out *= element
 	return out
 
+@jit
+def list_to_dic(l):
+	dic = {}
+	for i in l:
+		dic[i] = -1
+	return dic
+
+@jit
+def factorial(n):
+	if n==0:
+		return 1
+	else:
+		ans = 1
+		for i in range(1,n+1):
+			ans *= i
+		return ans
+
+'''
+Inputs:
+	str: A string.
+Outputs:
+	True or False.
+Example:
+	str = "585", returns True
+	str = "589", returns False
+'''
+@jit
+def check_palindrome(str):
+	for i in range(len(str)):
+		if str[i] != str[-1-i]:
+			return False
+	return True
