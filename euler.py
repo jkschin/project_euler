@@ -101,6 +101,13 @@ def factorial(n):
 			ans *= i
 		return ans
 
+@jit
+def is_square(n):
+	sq = math.sqrt(n)
+	if (int(sq))**2 == n:
+		return True
+	return False
+
 '''
 Inputs:
 	str: A string.
