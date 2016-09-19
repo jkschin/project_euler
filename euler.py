@@ -1,4 +1,6 @@
 import math
+import collections
+
 from numba import jit
 '''
 64 bit prime: 18446744073709551557
@@ -123,3 +125,11 @@ def check_palindrome(str):
 		if str[i] != str[-1-i]:
 			return False
 	return True
+
+def count_unique_digits(n):
+	dic = collections.defaultdict(int)
+	while (n / 10) != 0:
+		dic[n % 10] += 1
+		n /= 10
+	dic[n % 10] += 1
+	return dic
